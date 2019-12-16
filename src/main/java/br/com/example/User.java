@@ -21,6 +21,14 @@ public class User implements UserDetails {
 
 	private List<Role> roles;
 
+	public User(String username, String password, Boolean enabled, List<Role> roles) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.roles = roles;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.roles.stream().map(authority -> new SimpleGrantedAuthority(authority.name()))
@@ -62,4 +70,13 @@ public class User implements UserDetails {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
 }
